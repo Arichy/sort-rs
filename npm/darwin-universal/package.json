@@ -1,0 +1,15 @@
+{
+  "name": "@arichy/sort-rs-darwin-universal",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "main": "sort-rs.darwin-universal.node",
+  "files": [
+    "sort-rs.darwin-universal.node"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  }
+}
