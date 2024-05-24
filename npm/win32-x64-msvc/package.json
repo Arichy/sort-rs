@@ -1,5 +1,5 @@
 {
-  "name": "@arichy/sort-rs-win32-x64-msvc",
+  "name": "@arichy/sort-rs-core-win32-x64-msvc",
   "version": "0.0.3",
   "os": [
     "win32"
@@ -7,9 +7,9 @@
   "cpu": [
     "x64"
   ],
-  "main": "sort-rs.win32-x64-msvc.node",
+  "main": "sort-rs-core.win32-x64-msvc.node",
   "files": [
-    "sort-rs.win32-x64-msvc.node"
+    "sort-rs-core.win32-x64-msvc.node"
   ],
   "license": "MIT",
   "engines": {

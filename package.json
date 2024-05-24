@@ -1,10 +1,10 @@
 {
-  "name": "@arichy/sort-rs",
+  "name": "@arichy/sort-rs-core",
   "version": "0.0.3",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
-    "name": "sort-rs",
+    "name": "sort-rs-core",
     "triples": {
       "additional": [
         "aarch64-apple-darwin",

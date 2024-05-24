@@ -1,3 +1,3 @@
-# `@arichy/sort-rs-darwin-universal`
+# `@arichy/sort-rs-core-darwin-universal`
 
-This is the **universal-apple-darwin** binary for `@arichy/sort-rs`
+This is the **universal-apple-darwin** binary for `@arichy/sort-rs-core`

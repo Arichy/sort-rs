@@ -1,3 +1,3 @@
-# `@arichy/sort-rs-darwin-arm64`
+# `@arichy/sort-rs-core-darwin-arm64`
 
-This is the **aarch64-apple-darwin** binary for `@arichy/sort-rs`
+This is the **aarch64-apple-darwin** binary for `@arichy/sort-rs-core`

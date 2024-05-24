@@ -1,3 +1,3 @@
-# `@arichy/sort-rs-linux-x64-gnu`
+# `@arichy/sort-rs-core-linux-x64-gnu`
 
-This is the **x86_64-unknown-linux-gnu** binary for `@arichy/sort-rs`
+This is the **x86_64-unknown-linux-gnu** binary for `@arichy/sort-rs-core`

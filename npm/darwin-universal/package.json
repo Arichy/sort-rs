@@ -1,12 +1,12 @@
 {
-  "name": "@arichy/sort-rs-darwin-universal",
+  "name": "@arichy/sort-rs-core-darwin-universal",
   "version": "0.0.3",
   "os": [
     "darwin"
   ],
-  "main": "sort-rs.darwin-universal.node",
+  "main": "sort-rs-core.darwin-universal.node",
   "files": [
-    "sort-rs.darwin-universal.node"
+    "sort-rs-core.darwin-universal.node"
   ],
   "license": "MIT",
   "engines": {

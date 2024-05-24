@@ -1,5 +1,5 @@
 {
-  "name": "@arichy/sort-rs-darwin-x64",
+  "name": "@arichy/sort-rs-core-darwin-x64",
   "version": "0.0.3",
   "os": [
     "darwin"
@@ -7,9 +7,9 @@
   "cpu": [
     "x64"
   ],
-  "main": "sort-rs.darwin-x64.node",
+  "main": "sort-rs-core.darwin-x64.node",
   "files": [
-    "sort-rs.darwin-x64.node"
+    "sort-rs-core.darwin-x64.node"
   ],
   "license": "MIT",
   "engines": {

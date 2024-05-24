@@ -1,5 +1,5 @@
 {
-  "name": "@arichy/sort-rs-linux-arm-gnueabihf",
+  "name": "@arichy/sort-rs-core-linux-arm-gnueabihf",
   "version": "0.0.3",
   "os": [
     "linux"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm"
   ],
-  "main": "sort-rs.linux-arm-gnueabihf.node",
+  "main": "sort-rs-core.linux-arm-gnueabihf.node",
   "files": [
-    "sort-rs.linux-arm-gnueabihf.node"
+    "sort-rs-core.linux-arm-gnueabihf.node"
   ],
   "license": "MIT",
   "engines": {
