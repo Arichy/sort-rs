@@ -310,6 +310,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { sum } = nativeBinding
+const { normalSortNumbers, rayonSortNumbers } = nativeBinding
 
-module.exports.sum = sum
+module.exports.normalSortNumbers = normalSortNumbers
+module.exports.rayonSortNumbers = rayonSortNumbers
