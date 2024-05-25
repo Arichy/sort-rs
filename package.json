@@ -47,7 +47,8 @@
     "version": "napi version",
     "dev": "tsc -w",
     "build:ts": "tsc",
-    "bench": "node bench/index.js"
+    "bench": "node bench/index.js",
+    "prepublish": "yarn build:ts"
   },
   "packageManager": "yarn@4.2.2",
   "repository": {

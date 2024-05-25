@@ -180,6 +180,8 @@ jobs:
       - name: List packages
         run: ls -R .
         shell: bash
+      - name: Build TS
+        run: yarn build:ts
       - name: Test bindings
         run: yarn test
   test-linux-x64-gnu-binding:
@@ -210,6 +212,8 @@ jobs:
       - name: List packages
         run: ls -R .
         shell: bash
+      - name: Build TS
+        run: yarn build:ts
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim yarn test
   test-linux-x64-musl-binding:
@@ -242,6 +246,8 @@ jobs:
       - name: List packages
         run: ls -R .
         shell: bash
+      - name: Build TS
+        run: yarn build:ts
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine yarn test
   test-linux-aarch64-gnu-binding:
@@ -275,6 +281,8 @@ jobs:
         with:
           platforms: arm64
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      - name: Build TS
+        run: yarn build:ts
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -309,6 +317,8 @@ jobs:
         with:
           platforms: arm64
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      - name: Build TS
+        run: yarn build:ts
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -347,6 +357,8 @@ jobs:
         with:
           platforms: arm
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+      - name: Build TS
+        run: yarn build:ts
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
