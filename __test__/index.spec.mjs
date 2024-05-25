@@ -1,7 +1,7 @@
 import test from 'ava';
 
 import { rayonSortNumbers, sortNumbers } from '../dist/index.js';
-import { getRandomFloatArray, isSorted } from '../test-utils.js';
+import { getRandomFloatArray, isSorted } from '../utils.js';
 
 test('rayon sort number asc', t => {
   const run = count => {

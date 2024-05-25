@@ -1,6 +1,6 @@
 const Benchmark = require('benchmark');
 const { rayonSortNumbers, normalSortNumbers, sortNumbers } = require('../dist/index.js');
-const { getRandomFloatArray, isSorted } = require('../test-utils.js');
+const { getRandomFloatArray, isSorted } = require('../utils.js');
 
 function runAscSuit(count) {
   const suite = new Benchmark.Suite({ name: `Sort ${count.toLocaleString().red} numbers` });

@@ -1,3 +1,5 @@
+// some utils for testing
+// the filename cannot contain `test`, otherwise it would be treated as a test file
 function getRandomFloat(min, max) {
   return Math.random() * (max - min + 1) + min;
 }
