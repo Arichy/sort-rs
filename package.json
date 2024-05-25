@@ -1,8 +1,8 @@
 {
   "name": "@arichy/sort-rs",
   "version": "0.0.3",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "napi": {
     "name": "sort-rs",
     "triples": {
@@ -24,8 +24,11 @@
   "license": "MIT",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.3",
+    "@types/benchmark": "^2.1.5",
     "@types/node": "^20.12.12",
-    "ava": "^6.0.1"
+    "ava": "^6.0.1",
+    "benchmark": "^2.1.4",
+    "colors": "^1.4.0"
   },
   "ava": {
     "timeout": "3m"
@@ -35,12 +38,15 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release",
+    "build": "napi build --platform --release && yarn build:ts",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
-    "version": "napi version"
+    "version": "napi version",
+    "dev": "tsc -w",
+    "build:ts": "tsc",
+    "bench": "node bench/index.js"
   },
   "packageManager": "yarn@4.2.2",
   "repository": {
