@@ -1,5 +1,5 @@
 {
-  "name": "@arichy/sort-rs-core-android-arm64",
+  "name": "@arichy/sort-rs-android-arm64",
   "version": "0.0.3",
   "os": [
     "android"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm64"
   ],
-  "main": "sort-rs-core.android-arm64.node",
+  "main": "sort-rs.android-arm64.node",
   "files": [
-    "sort-rs-core.android-arm64.node"
+    "sort-rs.android-arm64.node"
   ],
   "license": "MIT",
   "engines": {

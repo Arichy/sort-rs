@@ -1,5 +1,5 @@
 {
-  "name": "@arichy/sort-rs-core-android-arm-eabi",
+  "name": "@arichy/sort-rs-android-arm-eabi",
   "version": "0.0.3",
   "os": [
     "android"
@@ -7,9 +7,9 @@
   "cpu": [
     "arm"
   ],
-  "main": "sort-rs-core.android-arm-eabi.node",
+  "main": "sort-rs.android-arm-eabi.node",
   "files": [
-    "sort-rs-core.android-arm-eabi.node"
+    "sort-rs.android-arm-eabi.node"
   ],
   "license": "MIT",
   "engines": {

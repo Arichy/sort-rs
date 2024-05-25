@@ -1,5 +1,5 @@
 {
-  "name": "@arichy/sort-rs-core-linux-riscv64-gnu",
+  "name": "@arichy/sort-rs-linux-riscv64-gnu",
   "version": "0.0.3",
   "os": [
     "linux"
@@ -7,18 +7,18 @@
   "cpu": [
     "riscv64"
   ],
-  "main": "sort-rs-core.linux-riscv64-gnu.node",
+  "main": "sort-rs.linux-riscv64-gnu.node",
   "files": [
-    "sort-rs-core.linux-riscv64-gnu.node"
+    "sort-rs.linux-riscv64-gnu.node"
   ],
   "license": "MIT",
   "engines": {
     "node": ">= 10"
   },
-  "repository": {
-    "url": "https://github.com/Arichy/sort-rs"
-  },
   "libc": [
     "glibc"
-  ]
+  ],
+  "repository": {
+    "url": "https://github.com/Arichy/sort-rs"
+  }
 }
