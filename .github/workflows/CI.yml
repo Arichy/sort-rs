@@ -137,6 +137,8 @@ jobs:
         run: ${{ matrix.settings.build }}
         if: ${{ !matrix.settings.docker }}
         shell: bash
+      - name: Build TS
+        run: yarn build:ts
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:

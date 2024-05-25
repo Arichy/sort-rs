@@ -39,14 +39,14 @@
   },
   "scripts": {
     "artifacts": "napi artifacts",
-    "build": "napi build --platform --release && yarn build:ts",
+    "build": "napi build --platform --release",
     "build:debug": "napi build --platform",
     "prepublishOnly": "napi prepublish -t npm",
     "test": "ava",
     "universal": "napi universal",
     "version": "napi version",
     "dev": "tsc -w",
-    "build:ts": "tsc -p tsconfig.json",
+    "build:ts": "tsc",
     "bench": "node bench/index.js"
   },
   "packageManager": "yarn@4.2.2",
