@@ -46,7 +46,7 @@
     "universal": "napi universal",
     "version": "napi version",
     "dev": "tsc -w",
-    "build:ts": "tsc",
+    "build:ts": "tsc -p tsconfig.json",
     "bench": "node bench/index.js"
   },
   "packageManager": "yarn@4.2.2",
