@@ -13,9 +13,6 @@ fn normal_quick_sort_objects_universal(
     result.push(priority);
   }
 
-  // let to_print: &mut [u32] = &mut index_list;
-  // println!("result: {:?}, order_list:{:?}", result, order_list);
-
   _normal_quick_sort_objects_universal(&mut result, &mut index_list, &order_list);
 }
 
@@ -24,11 +21,6 @@ fn _normal_quick_sort_objects_universal(
   index_list: &mut [u32],
   order_list: &[bool],
 ) {
-  // print params
-  // println!(
-  //   "priority_list: {:?}, index_list:{:?},order_list:{:?}",
-  //   priority_list, index_list, order_list
-  // );
   if priority_list[0].len() <= 1 {
     return;
   }
@@ -59,7 +51,7 @@ mod tests {
   #[test]
   fn test_sorted() {
     let mut priority0 = vec![];
-    // let mut priority1 = vec![];
+
     let mut index_list = vec![];
     const COUNT: usize = 10000;
     for i in 0..COUNT {
@@ -84,7 +76,7 @@ mod tests {
   #[test]
   fn test_desc_sorted() {
     let mut priority0 = vec![];
-    // let mut priority1 = vec![];
+
     let mut index_list = vec![];
     const COUNT: usize = 1_000_000;
     for i in 0..COUNT {
