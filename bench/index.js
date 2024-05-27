@@ -15,6 +15,8 @@ async function single() {
 }
 
 async function main() {
+  await finalRunAsc();
+  await finalRunDesc();
   await finalRunObjects();
 }
 
