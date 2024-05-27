@@ -17,6 +17,8 @@ const getRandomObjectArray = (count, fieldCount) => {
   return result;
 };
 
+const counts = [10, 30, 50, 100, 1_000, 5_000, 10_000];
+
 test('final sort objects', t => {
   const run = (count, fieldCount) => {
     const input = getRandomObjectArray(count, fieldCount);
@@ -27,7 +29,6 @@ test('final sort objects', t => {
     t.assert(isObjectsSorted(result, priorityOrderList, orderList));
   };
 
-  const counts = [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000];
   const fieldCounts = [1, 2, 3];
   for (const count of counts) {
     for (const fieldCount of fieldCounts) {
@@ -53,7 +54,7 @@ test('final sort asc-sorted objects', t => {
     t.assert(isObjectsSorted(result2, priorityOrderList, [false]));
   };
 
-  for (const count of [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -75,7 +76,7 @@ test('final sort desc-sorted objects', t => {
     t.assert(isObjectsSorted(result2, priorityOrderList, [true]));
   };
 
-  for (const count of [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });

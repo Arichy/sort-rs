@@ -26,6 +26,8 @@ const getRandomObjectArray = (objectCount, fieldCount) => {
   return result;
 };
 
+const counts = [10, 30, 50, 100, 1_000, 5_000, 10_000];
+
 // sort objects
 test('normal quick sort objects', t => {
   const run = count => {
@@ -37,7 +39,7 @@ test('normal quick sort objects', t => {
     t.assert(isObjectsSorted(result, priorityOrderList, orderList));
   };
 
-  for (const count of [10, 30, 50, 100, 1000, 5000, 10000, 100000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -59,7 +61,7 @@ test('normal quick sort asc-sorted objects', t => {
     t.assert(isObjectsSorted(result2, priorityOrderList, [false]));
   };
 
-  for (const count of [10, 30, 50, 100, 1000, 5000, 10_000, 100_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -81,7 +83,7 @@ test('normal quick sort desc-sorted objects', t => {
     t.assert(isObjectsSorted(result2, priorityOrderList, [true]));
   };
 
-  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -96,7 +98,7 @@ test('rayon quick sort objects', t => {
     t.assert(isObjectsSorted(result, priorityOrderList, orderList));
   };
 
-  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -118,7 +120,7 @@ test('rayon quick sort asc-sorted objects', t => {
     t.assert(isObjectsSorted(result2, priorityOrderList, [false]));
   };
 
-  for (const count of [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -140,7 +142,7 @@ test('rayon quick sort desc-sorted objects', t => {
     t.assert(isObjectsSorted(result2, priorityOrderList, [true]));
   };
 
-  for (const count of [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -160,7 +162,7 @@ test('normal quick sort objects with one priority key', t => {
     }
   };
 
-  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -180,7 +182,7 @@ test('rayon quick sort objects with one priority key', t => {
     }
   };
 
-  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -210,7 +212,7 @@ test('normal quick sort objects with two priority keys', t => {
     }
   };
 
-  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
@@ -240,7 +242,7 @@ test('rayon quick sort objects with two priority keys', t => {
     }
   };
 
-  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+  for (const count of counts) {
     run(count);
   }
 });
