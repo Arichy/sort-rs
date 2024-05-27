@@ -13,7 +13,6 @@ fn _normal_quick_sort_numbers(arr: &mut [f64], asc: bool) {
     return;
   }
 
-  let len = arr.len();
   let mid = partition(arr, asc);
   let (lo, hi) = arr.split_at_mut(mid);
   let hi = &mut hi[1..];
