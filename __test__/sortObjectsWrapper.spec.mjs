@@ -3,7 +3,10 @@ import test from 'ava';
 import {
   normalQuickSortObjectsUniversal,
   rayonQuickSortObjectsUniversal,
-  sortObjectsUniversal,
+  normalQuickSortObjectsWithOnePriorityKey,
+  rayonQuickSortObjectsWithOnePriorityKey,
+  normalQuickSortObjectsWithTwoPriorityKeys,
+  rayonQuickSortObjectsWithTwoPriorityKeys,
 } from '../dist/index.js';
 import { getRandomFloat, getSortedIntArray, isObjectsSorted } from '../utils.js';
 
@@ -138,6 +141,106 @@ test('rayon quick sort desc-sorted objects', t => {
   };
 
   for (const count of [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test('normal quick sort objects with one priority key', t => {
+  const run = count => {
+    const input = getRandomObjectArray(count, FIELD_COUNT);
+
+    {
+      const result = normalQuickSortObjectsWithOnePriorityKey(input, 'field0', true);
+      t.assert(isObjectsSorted(result, 'field0', true));
+    }
+
+    {
+      const result = normalQuickSortObjectsWithOnePriorityKey(input, 'field0', false);
+      t.assert(isObjectsSorted(result, 'field0', false));
+    }
+  };
+
+  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test('rayon quick sort objects with one priority key', t => {
+  const run = count => {
+    const input = getRandomObjectArray(count, FIELD_COUNT);
+
+    {
+      const result = rayonQuickSortObjectsWithOnePriorityKey(input, 'field0', true);
+      t.assert(isObjectsSorted(result, 'field0', true));
+    }
+
+    {
+      const result = rayonQuickSortObjectsWithOnePriorityKey(input, 'field0', false);
+      t.assert(isObjectsSorted(result, 'field0', false));
+    }
+  };
+
+  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test('normal quick sort objects with two priority keys', t => {
+  const run = count => {
+    const input = getRandomObjectArray(count, FIELD_COUNT);
+
+    {
+      const result = normalQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', true, true);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [true, true]));
+    }
+
+    {
+      const result = normalQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', true, false);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [true, false]));
+    }
+
+    {
+      const result = normalQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', false, true);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [false, true]));
+    }
+
+    {
+      const result = normalQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', false, false);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [false, false]));
+    }
+  };
+
+  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test('rayon quick sort objects with two priority keys', t => {
+  const run = count => {
+    const input = getRandomObjectArray(count, FIELD_COUNT);
+
+    {
+      const result = rayonQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', true, true);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [true, true]));
+    }
+
+    {
+      const result = rayonQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', true, false);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [true, false]));
+    }
+
+    {
+      const result = rayonQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', false, true);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [false, true]));
+    }
+
+    {
+      const result = rayonQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', false, false);
+      t.assert(isObjectsSorted(result, ['field0', 'field1'], [false, false]));
+    }
+  };
+
+  for (const count of [10, 30, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
     run(count);
   }
 });

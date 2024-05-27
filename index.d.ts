@@ -8,7 +8,11 @@ export function normalMergeSortObjectsUniversal(priorityList: Array<Float64Array
 export function rayonMergeSortNumbers(arr: Float64Array, asc: boolean): void
 export function rayonMergeSortObjectsUniversal(priorityList: Array<Float64Array>, indexList: Uint32Array, orderList: Array<boolean>): void
 export function normalQuickSortNumbers(arr: Float64Array, asc: boolean): void
+export function normalQuickSortObjectsWithOnePriorityKey(priorityKey: Float64Array, indexList: Uint32Array, asc: boolean): void
+export function normalQuickSortObjectsWithTwoPriorityKeys(priorityKey0: Float64Array, priorityKey1: Float64Array, indexList: Uint32Array, asc0: boolean, asc1: boolean): void
 export function normalQuickSortObjectsUniversal(priorityList: Array<Float64Array>, indexList: Uint32Array, orderList: Array<boolean>): void
 export function rayonQuickSortNumbers(arr: Float64Array, asc: boolean): void
+export function rayonQuickSortObjectsWithOnePriorityKey(priorityKey: Float64Array, indexList: Uint32Array, asc: boolean): void
+export function rayonQuickSortObjectsWithTwoPriorityKeys(priorityKey0: Float64Array, priorityKey1: Float64Array, indexList: Uint32Array, asc0: boolean, asc1: boolean): void
 export function rayonQuickSortObjectsUniversal(priorityList: Array<Float64Array>, indexList: Uint32Array, orderList: Array<boolean>): void
 export function heapSort(arr: Float64Array): void

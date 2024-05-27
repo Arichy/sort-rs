@@ -3,6 +3,10 @@ import {
   rayonQuickSortNumbers as _rayonQuickSortNumbers,
   normalQuickSortObjectsUniversal as _normalQuickSortObjectsUniversal,
   rayonQuickSortObjectsUniversal as _rayonQuickSortObjectsUniversal,
+  normalQuickSortObjectsWithOnePriorityKey as _normalQuickSortObjectsWithOnePriorityKey,
+  rayonQuickSortObjectsWithOnePriorityKey as _rayonQuickSortObjectsWithOnePriorityKey,
+  normalQuickSortObjectsWithTwoPriorityKeys as _normalQuickSortObjectsWithTwoPriorityKeys,
+  rayonQuickSortObjectsWithTwoPriorityKeys as _rayonQuickSortObjectsWithTwoPriorityKeys,
 } from '../../index';
 
 export function rayonQuickSortNumbers(arr: number[], asc = true) {
@@ -70,6 +74,110 @@ export function rayonQuickSortObjectsUniversal<T extends Record<string, any>>(
   });
 
   _rayonQuickSortObjectsUniversal(priorityList, indexList, orderList);
+
+  const result = [];
+  for (let i = 0; i < indexList.length; i++) {
+    result.push(objectArray[indexList[i]]);
+  }
+  return result;
+}
+
+export function normalQuickSortObjectsWithOnePriorityKey<T extends Record<string, any>>(
+  objectArray: T[],
+  priorityKey: keyof T,
+  asc = true
+) {
+  const priorityList = new Float64Array(objectArray.length);
+  const indexList = new Uint32Array(objectArray.length);
+  objectArray.forEach((value, index) => {
+    if (typeof value[priorityKey] !== 'number') {
+      throw new Error('Field must be number');
+    }
+    priorityList[index] = value[priorityKey] as number;
+    indexList[index] = index;
+  });
+
+  _normalQuickSortObjectsWithOnePriorityKey(priorityList, indexList, asc);
+
+  const result = [];
+  for (let i = 0; i < indexList.length; i++) {
+    result.push(objectArray[indexList[i]]);
+  }
+  return result;
+}
+
+export function rayonQuickSortObjectsWithOnePriorityKey<T extends Record<string, any>>(
+  objectArray: T[],
+  priorityKey: keyof T,
+  asc = true
+) {
+  const priorityList = new Float64Array(objectArray.length);
+  const indexList = new Uint32Array(objectArray.length);
+  objectArray.forEach((value, index) => {
+    if (typeof value[priorityKey] !== 'number') {
+      throw new Error('Field must be number');
+    }
+    priorityList[index] = value[priorityKey] as number;
+    indexList[index] = index;
+  });
+
+  _rayonQuickSortObjectsWithOnePriorityKey(priorityList, indexList, asc);
+
+  const result = [];
+  for (let i = 0; i < indexList.length; i++) {
+    result.push(objectArray[indexList[i]]);
+  }
+  return result;
+}
+
+export function normalQuickSortObjectsWithTwoPriorityKeys<T extends Record<string, any>>(
+  objectArray: T[],
+  priorityKey0: keyof T,
+  priorityKey1: keyof T,
+  asc0 = true,
+  asc1 = true
+) {
+  const priorityList0 = new Float64Array(objectArray.length);
+  const priorityList1 = new Float64Array(objectArray.length);
+  const indexList = new Uint32Array(objectArray.length);
+  objectArray.forEach((value, index) => {
+    if (typeof value[priorityKey0] !== 'number' || typeof value[priorityKey1] !== 'number') {
+      throw new Error('Fields must be numbers');
+    }
+    priorityList0[index] = value[priorityKey0] as number;
+    priorityList1[index] = value[priorityKey1] as number;
+    indexList[index] = index;
+  });
+
+  _normalQuickSortObjectsWithTwoPriorityKeys(priorityList0, priorityList1, indexList, asc0, asc1);
+
+  const result = [];
+  for (let i = 0; i < indexList.length; i++) {
+    result.push(objectArray[indexList[i]]);
+  }
+  return result;
+}
+
+export function rayonQuickSortObjectsWithTwoPriorityKeys<T extends Record<string, any>>(
+  objectArray: T[],
+  priorityKey0: keyof T,
+  priorityKey1: keyof T,
+  asc0 = true,
+  asc1 = true
+) {
+  const priorityList0 = new Float64Array(objectArray.length);
+  const priorityList1 = new Float64Array(objectArray.length);
+  const indexList = new Uint32Array(objectArray.length);
+  objectArray.forEach((value, index) => {
+    if (typeof value[priorityKey0] !== 'number' || typeof value[priorityKey1] !== 'number') {
+      throw new Error('Fields must be numbers');
+    }
+    priorityList0[index] = value[priorityKey0] as number;
+    priorityList1[index] = value[priorityKey1] as number;
+    indexList[index] = index;
+  });
+
+  _rayonQuickSortObjectsWithTwoPriorityKeys(priorityList0, priorityList1, indexList, asc0, asc1);
 
   const result = [];
   for (let i = 0; i < indexList.length; i++) {

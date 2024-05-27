@@ -6,6 +6,10 @@ export {
   // sort objects
   normalQuickSortObjectsUniversal,
   rayonQuickSortObjectsUniversal,
+  normalQuickSortObjectsWithOnePriorityKey,
+  rayonQuickSortObjectsWithOnePriorityKey,
+  normalQuickSortObjectsWithTwoPriorityKeys,
+  rayonQuickSortObjectsWithTwoPriorityKeys,
 } from './wrappers';
 
 export { sortNumbers } from './sortNumbers';
