@@ -1,5 +1,11 @@
 const Benchmark = require('benchmark');
-const { rayonSortNumbers, normalSortNumbers, sortNumbers } = require('../dist/index.js');
+const {
+  normalQuickSortNumbers,
+  rayonQuickSortNumbers,
+  normalMergeSortNumbers,
+  rayonMergeSortNumbers,
+  sortNumbers,
+} = require('../dist/index.js');
 const { getRandomFloatArray, isSorted } = require('../utils.js');
 
 function runAscSuit(count) {
@@ -15,22 +21,40 @@ function runAscSuit(count) {
 
   suite
     .add(
-      'normal sort asc',
+      'normal quick sort asc',
       () => {
         const copy = [...testArray];
         // const copy = getRandomFloatArray(count);
-        const result = normalSortNumbers(copy);
+        const result = normalQuickSortNumbers(copy);
       },
       { maxTime: 0.5 }
     )
     .add(
-      'rayon sort asc',
+      'rayon quick sort asc',
       () => {
         // console.time('rayon sort');
         const copy = [...testArray];
         // const copy = getRandomFloatArray(count);
-        const result = rayonSortNumbers(copy);
+        const result = rayonQuickSortNumbers(copy);
         // console.timeEnd('rayon sort');
+      },
+      { maxTime: 0.5 }
+    )
+    .add(
+      'normal merge sort asc',
+      () => {
+        const copy = [...testArray];
+        // const copy = getRandomFloatArray(count);
+        const result = normalMergeSortNumbers(copy);
+      },
+      { maxTime: 0.5 }
+    )
+    .add(
+      'rayon merge sort asc',
+      () => {
+        const copy = [...testArray];
+        // const copy = getRandomFloatArray(count);
+        const result = rayonMergeSortNumbers(copy);
       },
       { maxTime: 0.5 }
     )
@@ -55,16 +79,16 @@ function runAscSuit(count) {
       },
       { maxTime: 0.5 }
     )
-    .add(
-      'final sort asc',
-      () => {
-        const copy = [...testArray];
-        // const copy = getRandomFloatArray(count);
+    // .add(
+    //   'final sort asc',
+    //   () => {
+    //     const copy = [...testArray];
+    //     // const copy = getRandomFloatArray(count);
 
-        const result = sortNumbers(copy);
-      },
-      { maxTime: 0.5 }
-    )
+    //     const result = sortNumbers(copy);
+    //   },
+    //   { maxTime: 0.5 }
+    // )
     .on('start', () => {
       console.log(`Start ${suite.name}`);
     })
@@ -72,29 +96,33 @@ function runAscSuit(count) {
       // console.log(String(event.target));
     })
     .on('complete', function () {
+      // console.log(this);
       const results = this
-        // .filter(bench => bench.name !== 'final sort asc')
+        // .filter(bench => bench.name !== 'final sort desc')
         .map(bench => {
           return {
             name: bench.name,
-            ops: Math.round(bench.hz),
+            ops: bench.hz,
+            mean: bench.stats.mean * 1000,
           };
         })
-        .sort((a, b) => b.ops - a.ops);
+        .sort((a, b) => a.mean - b.mean);
 
       const tableResults = this.map(bench => {
         return {
           Name: bench.name,
-          'Ops/sec': Math.round(bench.hz).toLocaleString(),
+          'Ops/sec': bench.hz.toLocaleString(),
+          'Mean time': `${(bench.stats.mean * 1000).toFixed(3)} ms`,
           'Margin of Error': `±${bench.stats.rme.toFixed(2)}%`,
           Samples: bench.stats.sample.length,
         };
       });
 
-      // console.table(results);
+      console.table(tableResults);
       console.log(`Fastest is ${results[0].name.green} with ${results[0].ops.toFixed(2).blue} ops/sec`);
       console.log(`Second fastest is ${results[1].name.yellow} with ${results[1].ops.toFixed(2).blue} ops/sec`);
-      const speedDifference = results[0].ops / results[1].ops;
+      // const speedDifference = results[0].ops / results[1].ops;
+      const speedDifference = results[1].mean / results[0].mean;
       console.log(
         `${results[0].name.green} is ${speedDifference.toFixed(2).blue} times faster than ${results[1].name.yellow}`
       );
@@ -140,11 +168,11 @@ async function runAsc() {
   await runAscSuit(4_900);
   await runAscSuit(5_000);
   await runAscSuit(10_000);
-  // await runAscSuit(50_000);
-  // await runAscSuit(100_000);
-  // await runAscSuit(500_000);
-  // await runAscSuit(1_000_000);
-  // await runAscSuit(2_000_000);
+  await runAscSuit(50_000);
+  await runAscSuit(100_000);
+  await runAscSuit(500_000);
+  await runAscSuit(1_000_000);
+  await runAscSuit(2_000_000);
   // await runAscSuit(5_000_000);
   // await runAscSuit(10_000_000);
 }
