@@ -310,7 +310,14 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { normalSortNumbers, rayonSortNumbers } = nativeBinding
+const { normalMergeSortNumbers, normalMergeSortObjectsUniversal, rayonMergeSortNumbers, rayonMergeSortObjectsUniversal, normalQuickSortNumbers, normalQuickSortObjectsUniversal, rayonQuickSortNumbers, rayonQuickSortObjectsUniversal, heapSort } = nativeBinding
 
-module.exports.normalSortNumbers = normalSortNumbers
-module.exports.rayonSortNumbers = rayonSortNumbers
+module.exports.normalMergeSortNumbers = normalMergeSortNumbers
+module.exports.normalMergeSortObjectsUniversal = normalMergeSortObjectsUniversal
+module.exports.rayonMergeSortNumbers = rayonMergeSortNumbers
+module.exports.rayonMergeSortObjectsUniversal = rayonMergeSortObjectsUniversal
+module.exports.normalQuickSortNumbers = normalQuickSortNumbers
+module.exports.normalQuickSortObjectsUniversal = normalQuickSortObjectsUniversal
+module.exports.rayonQuickSortNumbers = rayonQuickSortNumbers
+module.exports.rayonQuickSortObjectsUniversal = rayonQuickSortObjectsUniversal
+module.exports.heapSort = heapSort
