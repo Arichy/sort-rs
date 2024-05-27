@@ -1,6 +1,7 @@
 const Benchmark = require('benchmark');
 const { rayonSortNumbers, normalSortNumbers, sortNumbers } = require('../dist/index.js');
 const { getRandomFloatArray, isSorted } = require('../utils.js');
+const { printResult } = require('./utils.js');
 
 function runSuit(count) {
   const suite = new Benchmark.Suite({ name: `Sort ${count.toLocaleString().red} numbers dessc` });
@@ -19,6 +20,9 @@ function runSuit(count) {
       () => {
         const copy = [...testArray];
         const result = normalSortNumbers(copy, false);
+        if (!isSorted(result, false)) {
+          reject(`normal sort desc failed: ${count} numbers`);
+        }
       },
       { maxTime: 0.5 }
     )
@@ -29,6 +33,9 @@ function runSuit(count) {
         const copy = [...testArray];
         const result = rayonSortNumbers(copy, false);
         // console.timeEnd('rayon sort');
+        if (!isSorted(result, false)) {
+          reject(`rayon sort desc failed: ${count} numbers`);
+        }
       },
       { maxTime: 0.5 }
     )
@@ -38,6 +45,10 @@ function runSuit(count) {
       const input = [...copy];
       input.sort((a, b) => b - a);
       // console.timeEnd('js native sort');
+
+      if (!isSorted(input, false)) {
+        reject(`js native sort desc failed: ${count} numbers`);
+      }
     })
     .add(
       'js typed array sort desc',
@@ -48,6 +59,10 @@ function runSuit(count) {
         input.sort((a, b) => b - a);
         const result = Array.from(input);
         // console.timeEnd('js sort');
+
+        if (!isSorted(result, false)) {
+          reject(`js typed array sort desc failed: ${count} numbers`);
+        }
       },
       { maxTime: 0.5 }
     )
@@ -56,6 +71,10 @@ function runSuit(count) {
       () => {
         const copy = [...testArray];
         const result = sortNumbers(copy, false);
+
+        if (!isSorted(result, false)) {
+          reject(`final sort desc failed: ${count} numbers`);
+        }
       },
       { maxTime: 0.5 }
     )
@@ -66,34 +85,8 @@ function runSuit(count) {
       // console.log(String(event.target));
     })
     .on('complete', function () {
-      const results = this
-        // .filter(bench => bench.name !== 'final sort desc')
-        .map(bench => {
-          return {
-            name: bench.name,
-            ops: Math.round(bench.hz),
-          };
-        })
-        .sort((a, b) => b.ops - a.ops);
+      printResult(this, bench => bench.name !== 'final sort desc');
 
-      const tableResults = this.map(bench => {
-        return {
-          Name: bench.name,
-          'Ops/sec': Math.round(bench.hz).toLocaleString(),
-          'Margin of Error': `±${bench.stats.rme.toFixed(2)}%`,
-          Samples: bench.stats.sample.length,
-        };
-      });
-
-      // console.table(results);
-      console.log(`Fastest is ${results[0].name.green} with ${results[0].ops.toFixed(2).blue} ops/sec`);
-      console.log(`Second fastest is ${results[1].name.yellow} with ${results[1].ops.toFixed(2).blue} ops/sec`);
-      const speedDifference = results[0].ops / results[1].ops;
-      console.log(
-        `${results[0].name.green} is ${speedDifference.toFixed(2).blue} times faster than ${results[1].name.yellow}`
-      );
-      // console.table(tableResults);
-      console.log();
       resolve(this);
     })
     .run({ async: true });
@@ -102,34 +95,10 @@ function runSuit(count) {
 }
 
 async function runDesc() {
-  // fastest: js native
-  await runSuit(1);
-  await runSuit(10);
-  await runSuit(20);
-  await runSuit(25);
-
-  // fastest: normal sort
-  await runSuit(30);
-  await runSuit(35);
-  await runSuit(40);
-  await runSuit(50);
-  await runSuit(80);
-  await runSuit(100);
-  await runSuit(500);
-  await runSuit(1_000);
-  await runSuit(2_000);
-  await runSuit(3_000);
-  // fasetst: rayon sort
-  await runSuit(4_000);
-  await runSuit(5_000);
-  // await runSuit(10_000);
-  // await runSuit(50_000);
-  // await runSuit(100_000);
-  // await runSuit(500_000);
-  // await runSuit(1_000_000);
-  // await runSuit(2_000_000);
-  // await runSuit(5_000_000);
-  // await runSuit(10_000_000);
+  const counts = [25, 50, 100, 500, 1_000, 4_000, 10_000, 50_000, 100_000, 500_000, 1_000_000, 2_000_000];
+  for (const count of counts) {
+    await runSuit(count);
+  }
 }
 
 module.exports = runDesc;
