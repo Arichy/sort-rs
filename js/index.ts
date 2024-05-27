@@ -14,3 +14,4 @@ export {
 
 export { sortNumbers } from './sortNumbers';
 export { sortObjectsUniversal } from './sortObjectsUniversal';
+export { sortObjects } from './sortObjects';

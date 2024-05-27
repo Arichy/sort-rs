@@ -1,10 +1,10 @@
 import { rayonQuickSortObjectsUniversal, normalQuickSortObjectsUniversal } from './wrappers';
 
 // if size < threshold, use the corresponding method
-const THRESHOLD_JS_NATIVE = 100;
+const THRESHOLD_JS_NATIVE = 300;
 const THRESHOLD_RS_NORMAL = 1250;
 
-const jsSortObjectsUniversal = <T extends Record<string, any>>(
+export const jsSortObjectsUniversal = <T extends Record<string, any>>(
   objectArray: T[],
   priorityOrderList: Array<keyof T>,
   orderList: boolean[]
@@ -40,9 +40,8 @@ export function sortObjectsUniversal<T extends Record<string, any>>(
     if (objectArray.length < THRESHOLD_RS_NORMAL) {
       return normalQuickSortObjectsUniversal(objectArray, priorityOrder, orderList);
     }
+    return rayonQuickSortObjectsUniversal(objectArray, priorityOrder, orderList);
   } catch {
     return jsSortObjectsUniversal(objectArray, priorityOrder, orderList);
   }
-
-  return rayonQuickSortObjectsUniversal(objectArray, priorityOrder, orderList);
 }

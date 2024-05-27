@@ -1,15 +1,13 @@
 import test from 'ava';
 
-import { sortObjectsUniversal } from '../dist/index.js';
+import { sortObjects, sortObjectsUniversal } from '../dist/index.js';
 import { getRandomFloat, getSortedIntArray, isObjectsSorted } from '../utils.js';
 
-const FIELD_COUNT = 3;
-let enableId = false;
-const getRandomObjectArray = (objectCount, fieldCount) => {
+const getRandomObjectArray = (count, fieldCount) => {
   const result = [];
-  for (let i = 0; i < objectCount; i++) {
+  for (let i = 0; i < count; i++) {
     const obj = {};
-    if (enableId) obj.id = i;
+    obj.id = i;
 
     for (let j = 0; j < fieldCount; j++) {
       obj[`field${j}`] = getRandomFloat(-1000, 100);
@@ -19,18 +17,22 @@ const getRandomObjectArray = (objectCount, fieldCount) => {
   return result;
 };
 
-test('final sort objects universal', t => {
-  const run = count => {
-    const input = getRandomObjectArray(count, FIELD_COUNT);
+test('final sort objects', t => {
+  const run = (count, fieldCount) => {
+    const input = getRandomObjectArray(count, fieldCount);
 
     const priorityOrderList = Object.keys(input[0]);
-    const orderList = new Array(FIELD_COUNT + (enableId ? 1 : 0)).fill(0).map(() => Math.random() > 0.5);
-    const result = sortObjectsUniversal(input, priorityOrderList, orderList);
+    const orderList = new Array(fieldCount).fill(0).map(() => Math.random() > 0.5);
+    const result = sortObjects(input, priorityOrderList, orderList);
     t.assert(isObjectsSorted(result, priorityOrderList, orderList));
   };
 
-  for (const count of [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000]) {
-    run(count);
+  const counts = [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 1_000_000];
+  const fieldCounts = [1, 2, 3];
+  for (const count of counts) {
+    for (const fieldCount of fieldCounts) {
+      run(count, fieldCount);
+    }
   }
 });
 

@@ -41,6 +41,27 @@ const isSorted = (arr, asc = true) => {
   return true;
 };
 
+const sortObjectsWithOneKey = (arr, key, asc) => {
+  return arr.sort((a, b) => {
+    const aVal = a[key];
+    const bVal = b[key];
+    return asc ? aVal - bVal : bVal - aVal;
+  });
+};
+
+const sortObjectsWithTwoKeys = (arr, key1, key2, asc1, asc2) => {
+  return arr.sort((a, b) => {
+    const aVal1 = a[key1];
+    const bVal1 = b[key1];
+    if (aVal1 === bVal1) {
+      const aVal2 = a[key2];
+      const bVal2 = b[key2];
+      return asc2 ? aVal2 - bVal2 : bVal2 - aVal2;
+    }
+    return asc1 ? aVal1 - bVal1 : bVal1 - aVal1;
+  });
+};
+
 const sortObjects = (arr, priorityList, orderList) => {
   const copied = [...arr];
   copied.sort((a, b) => {
@@ -83,6 +104,8 @@ const isObjectsSorted = (arr, priorityList, orderList) => {
 };
 
 module.exports = {
+  sortObjectsWithOneKey,
+  sortObjectsWithTwoKeys,
   getRandomFloat,
   getRandomInt,
   getRandomIntArray,
