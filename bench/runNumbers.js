@@ -22,7 +22,7 @@ function runSuit(count) {
 
   suite
     .add(
-      'normal quick sort asc',
+      'normal quick sort',
       () => {
         const copy = [...testArray];
         // const copy = getRandomFloatArray(count);
@@ -34,7 +34,7 @@ function runSuit(count) {
       { maxTime: 0.5 }
     )
     .add(
-      'rayon quick sort asc',
+      'rayon quick sort',
       () => {
         // console.time('rayon sort');
         const copy = [...testArray];
@@ -47,7 +47,7 @@ function runSuit(count) {
       },
       { maxTime: 0.5 }
     )
-    .add('js native sort asc', () => {
+    .add('js native sort', () => {
       const copy = [...testArray];
       // const copy = getRandomFloatArray(count);
 
@@ -55,7 +55,7 @@ function runSuit(count) {
       input.sort((a, b) => a - b);
     })
     .add(
-      'js typed array sort asc',
+      'js typed array sort',
       () => {
         // console.time('js sort');
         const copy = [...testArray];
@@ -69,7 +69,7 @@ function runSuit(count) {
       { maxTime: 0.5 }
     )
     .add(
-      'common normal quick sort asc',
+      'common normal quick sort',
       () => {
         const copy = [...testArray];
         // const copy = getRandomFloatArray(count);
@@ -82,7 +82,7 @@ function runSuit(count) {
       { maxTime: 0.5 }
     )
     .add(
-      'common rayon quick sort asc',
+      'common rayon quick sort',
       () => {
         const copy = [...testArray];
         // const copy = getRandomFloatArray(count);
@@ -95,7 +95,7 @@ function runSuit(count) {
       { maxTime: 0.5 }
     )
     .add(
-      'final sort asc',
+      'final sort',
       () => {
         const copy = [...testArray];
         // const copy = getRandomFloatArray(count);
@@ -114,7 +114,7 @@ function runSuit(count) {
       // console.log(String(event.target));
     })
     .on('complete', function () {
-      printResult(this, bench => bench.name !== 'final sort asc');
+      printResult(this, bench => bench.name !== 'final sort');
 
       resolve(this);
     })
@@ -123,7 +123,7 @@ function runSuit(count) {
   return promise;
 }
 
-async function runAsc() {
+async function runNumbers() {
   const counts = [20, 50, 100, 500, 1_000, 4_900, 10_000, 50_000, 100_000, 500_000, 1_000_000, 2_000_000];
 
   for (const count of counts) {
@@ -131,4 +131,4 @@ async function runAsc() {
   }
 }
 
-module.exports = runAsc;
+module.exports = runNumbers;
