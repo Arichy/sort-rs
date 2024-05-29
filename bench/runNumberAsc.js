@@ -1,5 +1,11 @@
 const Benchmark = require('benchmark');
-const { normalQuickSortNumbers, rayonQuickSortNumbers, sortNumbers } = require('../dist/index.js');
+const {
+  normalQuickSortNumbers,
+  rayonQuickSortNumbers,
+  sortNumbers,
+  normalQuickSortNumbersCommon,
+  rayonQuickSortNumbersCommon,
+} = require('../dist/index.js');
 const { getRandomFloatArray, isSorted } = require('../utils.js');
 const { printResult } = require('./utils.js');
 
@@ -59,6 +65,32 @@ function runSuit(count) {
         input.sort();
         const result = Array.from(input);
         // console.timeEnd('js sort');
+      },
+      { maxTime: 0.5 }
+    )
+    .add(
+      'common normal quick sort asc',
+      () => {
+        const copy = [...testArray];
+        // const copy = getRandomFloatArray(count);
+
+        const result = normalQuickSortNumbersCommon(copy);
+        if (!isSorted(result)) {
+          reject(`common normal quick sort asc failed: ${count} numbers`);
+        }
+      },
+      { maxTime: 0.5 }
+    )
+    .add(
+      'common rayon quick sort asc',
+      () => {
+        const copy = [...testArray];
+        // const copy = getRandomFloatArray(count);
+
+        const result = rayonQuickSortNumbersCommon(copy);
+        if (!isSorted(result)) {
+          reject(`common rayon quick sort asc failed: ${count} numbers`);
+        }
       },
       { maxTime: 0.5 }
     )

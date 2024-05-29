@@ -7,8 +7,10 @@ import {
   rayonQuickSortObjectsWithOnePriorityKey,
   normalQuickSortObjectsWithTwoPriorityKeys,
   rayonQuickSortObjectsWithTwoPriorityKeys,
+  normalQuickSortObjectsCommon,
+  rayonQuickSortObjectsCommon,
 } from '../dist/index.js';
-import { getRandomFloat, getSortedIntArray, isObjectsSorted } from '../utils.js';
+import { getRandomFloat, getRandomInt, getSortedIntArray, isObjectsSorted } from '../utils.js';
 
 const FIELD_COUNT = 3;
 let enableId = false;
@@ -19,7 +21,7 @@ const getRandomObjectArray = (objectCount, fieldCount) => {
     if (enableId) obj.id = i;
 
     for (let j = 0; j < fieldCount; j++) {
-      obj[`field${j}`] = getRandomFloat(-1000, 100);
+      obj[`field${j}`] = j === 0 ? getRandomInt(-1000, 100) : getRandomFloat(-1000, 1000);
     }
     result.push(obj);
   }
@@ -240,6 +242,36 @@ test('rayon quick sort objects with two priority keys', t => {
       const result = rayonQuickSortObjectsWithTwoPriorityKeys(input, 'field0', 'field1', false, false);
       t.assert(isObjectsSorted(result, ['field0', 'field1'], [false, false]));
     }
+  };
+
+  for (const count of counts) {
+    run(count);
+  }
+});
+
+test.skip('normal quick sort objects common', t => {
+  const run = count => {
+    const input = getRandomObjectArray(count, FIELD_COUNT);
+
+    const priorityOrderList = Object.keys(input[0]);
+    const orderList = new Array(FIELD_COUNT + (enableId ? 1 : 0)).fill(0).map(() => Math.random() > 0.5);
+    const result = normalQuickSortObjectsCommon(input, priorityOrderList, orderList);
+    t.assert(isObjectsSorted(result, priorityOrderList, orderList));
+  };
+
+  for (const count of counts) {
+    run(count);
+  }
+});
+
+test.skip('rayon quick sort  objects common', t => {
+  const run = count => {
+    const input = getRandomObjectArray(count, FIELD_COUNT);
+
+    const priorityOrderList = Object.keys(input[0]);
+    const orderList = new Array(FIELD_COUNT + (enableId ? 1 : 0)).fill(0).map(() => Math.random() > 0.5);
+    const result = rayonQuickSortObjectsCommon(input, priorityOrderList, orderList);
+    t.assert(isObjectsSorted(result, priorityOrderList, orderList));
   };
 
   for (const count of counts) {

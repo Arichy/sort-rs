@@ -3,6 +3,8 @@ const {
   rayonQuickSortObjectsUniversal,
   normalQuickSortObjectsUniversal,
   sortObjectsUniversal,
+  normalQuickSortObjectsCommon,
+  rayonQuickSortObjectsCommon,
 } = require('../dist/index.js');
 const { getRandomFloat, isObjectsSorted, sortObjects, getRandomInt } = require('../utils.js');
 const { printResult } = require('./utils.js');
@@ -57,6 +59,26 @@ function runSuit(count) {
       },
       { async: true }
     )
+    .add(
+      'rust normal quick sort common',
+      () => {
+        const sorted = normalQuickSortObjectsCommon(randomObjects, priorityList, orderList);
+        if (!isObjectsSorted(sorted, priorityList, orderList)) {
+          reject(`rust normal quick sort common failed: ${count} objects`);
+        }
+      },
+      { async: true }
+    )
+    .add(
+      'rust rayon quick sort common',
+      () => {
+        const sorted = rayonQuickSortObjectsCommon(randomObjects, priorityList, orderList);
+        if (!isObjectsSorted(sorted, priorityList, orderList)) {
+          reject(`rust rayon quick sort common failed: ${count} objects`);
+        }
+      },
+      { async: true }
+    )
     .add('final rust sort universal', () => {
       const sorted = sortObjectsUniversal(randomObjects, priorityList, orderList);
       if (!isObjectsSorted(sorted, priorityList, orderList)) {
@@ -80,11 +102,9 @@ async function runObjectsUniversal() {
   try {
     const counts = [
       // fastest:js
-      // 20,
-      100, 150, 200, 300,
-      // 500, 1_000,
+      20, 100, 150, 200, 300, 500, 1_000,
       // fastest: rayon
-      // 1250, 5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000, 2_000_000,
+      1250, 5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000, 2_000_000,
     ];
     for (const count of counts) {
       await runSuit(count);

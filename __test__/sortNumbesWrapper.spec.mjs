@@ -1,6 +1,11 @@
 import test from 'ava';
 
-import { rayonQuickSortNumbers, normalQuickSortNumbers } from '../dist/index.js';
+import {
+  rayonQuickSortNumbers,
+  normalQuickSortNumbers,
+  normalQuickSortNumbersCommon,
+  rayonQuickSortNumbersCommon,
+} from '../dist/index.js';
 import { getRandomFloatArray, getSortedIntArray, isSorted } from '../utils.js';
 
 test('normal quick sort number asc', t => {
@@ -97,6 +102,108 @@ test('rayon quick desc-sorted large-set numbers', t => {
     t.assert(isSorted(result, false));
 
     const result2 = rayonQuickSortNumbers(input, true);
+    t.assert(isSorted(result2, true));
+  };
+  for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('normal quick sort number asc common', t => {
+  const run = count => {
+    const input = getRandomFloatArray(count);
+    const result = normalQuickSortNumbersCommon(input);
+    t.assert(isSorted(result));
+  };
+
+  for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('normal quick sort number desc common', t => {
+  const run = count => {
+    const input = getRandomFloatArray(count);
+    const result = normalQuickSortNumbersCommon(input, false);
+    t.assert(isSorted(result, false));
+  };
+  for (const count of [10, 30, 50, 100, 1000, 5000, 10000, 100000, 50_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('normal quick sort asc-sorted large-set numbers common', t => {
+  const run = count => {
+    const input = getSortedIntArray(count);
+    const result = normalQuickSortNumbersCommon(input);
+    t.assert(isSorted(result));
+
+    const result2 = normalQuickSortNumbersCommon(input, false);
+    t.assert(isSorted(result2, false));
+  };
+  for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('normal quick sort desc-sorted large-set numbers common', t => {
+  const run = count => {
+    const input = getSortedIntArray(count, false);
+    const result = normalQuickSortNumbersCommon(input, false);
+    t.assert(isSorted(result, false));
+
+    const result2 = normalQuickSortNumbersCommon(input, true);
+    t.assert(isSorted(result2, true));
+  };
+  for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('rayon quick sort number asc common', t => {
+  const run = count => {
+    const input = getRandomFloatArray(count);
+    const result = rayonQuickSortNumbersCommon(input);
+    t.assert(isSorted(result));
+  };
+
+  for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('rayon quick sort number desc common', t => {
+  const run = count => {
+    const input = getRandomFloatArray(count);
+    const result = rayonQuickSortNumbersCommon(input, false);
+    t.assert(isSorted(result, false));
+  };
+  for (const count of [10, 30, 50, 100, 1000, 5000, 10000, 100000, 50_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('rayon quick asc-sorted large-set numbers common', t => {
+  const run = count => {
+    const input = getSortedIntArray(count);
+    const result = rayonQuickSortNumbersCommon(input);
+    t.assert(isSorted(result));
+
+    const result2 = rayonQuickSortNumbersCommon(input, false);
+    t.assert(isSorted(result2, false));
+  };
+  for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
+    run(count);
+  }
+});
+
+test.skip('rayon quick desc-sorted large-set numbers common', t => {
+  const run = count => {
+    const input = getSortedIntArray(count, false);
+    const result = rayonQuickSortNumbersCommon(input, false);
+    t.assert(isSorted(result, false));
+
+    const result2 = rayonQuickSortNumbersCommon(input, true);
     t.assert(isSorted(result2, true));
   };
   for (const count of [100_000, 300_000, 500_000, 1_000_000]) {
