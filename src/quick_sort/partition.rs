@@ -174,7 +174,6 @@ fn median_of_three_for_list_with_two_priority_keys(
   priority_key1: &mut [f64],
   index_list: &mut [u32],
   asc0: bool,
-  asc1: bool,
 ) -> usize {
   let mid = priority_key0.len() / 2;
   let last_index = priority_key0.len() - 1;
@@ -215,7 +214,6 @@ pub fn partition_objects_with_two_priority_keys(
     priority_key1,
     index_list,
     asc0,
-    asc1,
   );
   let mut i = 0;
   for j in 0..pivot {

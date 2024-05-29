@@ -1,5 +1,5 @@
 use super::partition::{
-  partition, partition_objcts_with_one_priority_key, partition_objects_universal,
+  partition_objcts_with_one_priority_key, partition_objects_universal,
   partition_objects_with_two_priority_keys,
 };
 use napi::bindgen_prelude::{Float64Array, Uint32Array};

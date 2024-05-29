@@ -7,6 +7,8 @@ import {
   rayonQuickSortObjectsWithOnePriorityKey as _rayonQuickSortObjectsWithOnePriorityKey,
   normalQuickSortObjectsWithTwoPriorityKeys as _normalQuickSortObjectsWithTwoPriorityKeys,
   rayonQuickSortObjectsWithTwoPriorityKeys as _rayonQuickSortObjectsWithTwoPriorityKeys,
+  quickSortNumbersCommon as _quickSortNumbersCommon,
+  quickSortObjectsCommon as _quickSortObjectsCommon,
 } from '../../index';
 
 export function rayonQuickSortNumbers(arr: number[], asc = true) {
@@ -183,5 +185,97 @@ export function rayonQuickSortObjectsWithTwoPriorityKeys<T extends Record<string
   for (let i = 0; i < indexList.length; i++) {
     result.push(objectArray[indexList[i]]);
   }
+  return result;
+}
+
+/**
+ * @description Not recommended to use this function. Use `normalQuickSortObjectsUniversal` instead.
+ * @deprecated
+ */
+export function normalQuickSortObjectsCommon<T extends Record<string, any>>(
+  objectArray: T[],
+  priorityOrderList: Array<keyof T>,
+  orderList: boolean[]
+) {
+  if (priorityOrderList.length !== orderList.length) {
+    throw new Error('Priority order and order list must have the same length');
+  }
+
+  const priorityList = priorityOrderList.map(() => new Float64Array(objectArray.length));
+  const indexList = new Uint32Array(objectArray.length);
+
+  objectArray.forEach((value, index) => {
+    priorityList.forEach((priority, i) => {
+      if (typeof value[priorityOrderList[i]] !== 'number') {
+        throw new Error('Fields must be numbers');
+      }
+      priority[index] = value[priorityOrderList[i]] as number;
+    });
+    indexList[index] = index;
+  });
+
+  _quickSortObjectsCommon(priorityList, indexList, orderList, false);
+
+  const result = [];
+  for (let i = 0; i < indexList.length; i++) {
+    result.push(objectArray[indexList[i]]);
+  }
+  return result;
+}
+
+/**
+ * @description Not recommended to use this function. Use `rayonQuickSortObjectsUniversal` instead.
+ * @deprecated
+ */
+export function rayonQuickSortObjectsCommon<T extends Record<string, any>>(
+  objectArray: T[],
+  priorityOrderList: Array<keyof T>,
+  orderList: boolean[]
+) {
+  if (priorityOrderList.length !== orderList.length) {
+    throw new Error('Priority order and order list must have the same length');
+  }
+
+  const priorityList = priorityOrderList.map(() => new Float64Array(objectArray.length));
+  const indexList = new Uint32Array(objectArray.length);
+
+  objectArray.forEach((value, index) => {
+    priorityList.forEach((priority, i) => {
+      if (typeof value[priorityOrderList[i]] !== 'number') {
+        throw new Error('Fields must be numbers');
+      }
+      priority[index] = value[priorityOrderList[i]] as number;
+    });
+    indexList[index] = index;
+  });
+
+  _quickSortObjectsCommon(priorityList, indexList, orderList, true);
+
+  const result = [];
+  for (let i = 0; i < indexList.length; i++) {
+    result.push(objectArray[indexList[i]]);
+  }
+  return result;
+}
+
+/**
+ * @description Not recommended to use this function. Use `normalQuickSortNumbers` instead.
+ * @deprecated
+ */
+export function normalQuickSortNumbersCommon(arr: number[], asc = true) {
+  const input = new Float64Array(arr);
+  _quickSortNumbersCommon(input, asc, false);
+  const result = Array.from(input);
+  return result;
+}
+
+/**
+ * @description Not recommended to use this function. Use `rayonQuickSortNumbers` instead.
+ * @deprecated
+ */
+export function rayonQuickSortNumbersCommon(arr: number[], asc = true) {
+  const input = new Float64Array(arr);
+  _quickSortNumbersCommon(input, asc, true);
+  const result = Array.from(input);
   return result;
 }

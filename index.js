@@ -310,12 +310,14 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { normalMergeSortNumbers, normalMergeSortObjectsUniversal, rayonMergeSortNumbers, rayonMergeSortObjectsUniversal, normalQuickSortNumbers, normalQuickSortObjectsWithOnePriorityKey, normalQuickSortObjectsWithTwoPriorityKeys, normalQuickSortObjectsUniversal, rayonQuickSortNumbers, rayonQuickSortObjectsWithOnePriorityKey, rayonQuickSortObjectsWithTwoPriorityKeys, rayonQuickSortObjectsUniversal, heapSort } = nativeBinding
+const { normalMergeSortNumbers, normalMergeSortObjectsUniversal, rayonMergeSortNumbers, rayonMergeSortObjectsUniversal, quickSortObjectsCommon, quickSortNumbersCommon, normalQuickSortNumbers, normalQuickSortObjectsWithOnePriorityKey, normalQuickSortObjectsWithTwoPriorityKeys, normalQuickSortObjectsUniversal, rayonQuickSortNumbers, rayonQuickSortObjectsWithOnePriorityKey, rayonQuickSortObjectsWithTwoPriorityKeys, rayonQuickSortObjectsUniversal, heapSort } = nativeBinding
 
 module.exports.normalMergeSortNumbers = normalMergeSortNumbers
 module.exports.normalMergeSortObjectsUniversal = normalMergeSortObjectsUniversal
 module.exports.rayonMergeSortNumbers = rayonMergeSortNumbers
 module.exports.rayonMergeSortObjectsUniversal = rayonMergeSortObjectsUniversal
+module.exports.quickSortObjectsCommon = quickSortObjectsCommon
+module.exports.quickSortNumbersCommon = quickSortNumbersCommon
 module.exports.normalQuickSortNumbers = normalQuickSortNumbers
 module.exports.normalQuickSortObjectsWithOnePriorityKey = normalQuickSortObjectsWithOnePriorityKey
 module.exports.normalQuickSortObjectsWithTwoPriorityKeys = normalQuickSortObjectsWithTwoPriorityKeys
