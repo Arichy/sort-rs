@@ -3,6 +3,8 @@
   "version": "0.0.5",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "author": "Arichy",
+  "description": "A fast and safe sorting library implemented in Rust and exposed to Node.js",
   "napi": {
     "name": "sort-rs",
     "triples": {
