@@ -4,7 +4,7 @@ A fast and safe sorting library implemented in Rust and exposed to Node.js.
 
 In small arrays, it's not so performant compared to the native JavaScript `Array.prototype.sort` method. But in large arrays, it's much faster.
 
-For now it only supports sorting numbers and objects in number fields.
+For now it only supports sorting numbers and objects by number fields.
 
 Recommended to use when the array size is larger than `1_000` elements.
 
@@ -59,7 +59,8 @@ console.log(isSorted(sortedNumbersDesc, false));
   -100, -10, -5, -4.669, -3.333, -3.14, -2.718, -2.236, -1.414, -0.577, 0, 0, 0.301, 0.577, 0.693, 1.4142, 1.618, 1.732,
   2.303, 2.645, 2.718, 3.14, 3.1415, 3.333, 4.669, 17, 17, 42, 42, 42, 100,
 ];
-true[
+true
+[
   (100,
   42,
   42,
