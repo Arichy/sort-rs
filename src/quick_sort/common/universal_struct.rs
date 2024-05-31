@@ -1,22 +1,22 @@
 use super::traits::{IndexComparable, Sizable, Splitable, Swappable};
 
 #[derive(Debug)]
-pub(crate) struct UniversalStruct<'a, 'b, 'p> {
-  pub(crate) priority_list: &'p mut [&'a mut [f64]],
-  pub(crate) index_list: &'a mut [u32],
-  pub(crate) order_list: &'b [bool],
+pub(crate) struct UniversalStruct<'origin, 'priority_list_ref> {
+  pub(crate) priority_list: &'priority_list_ref mut [&'origin mut [f64]],
+  pub(crate) index_list: &'origin mut [u32],
+  pub(crate) order_list: &'origin [bool],
 }
 
-impl<'a, 'b, 'p> Sizable for UniversalStruct<'a, 'b, 'p> {
+impl<'origin, 'priority_list_ref> Sizable for UniversalStruct<'origin, 'priority_list_ref> {
   fn len(&self) -> usize {
     self.index_list.len()
   }
 }
 
-impl<'a, 'b, 'p, 'n> Splitable<'n> for UniversalStruct<'a, 'b, 'p> {
-  type HalfOutput = (Vec<&'n mut [f64]>, &'n mut [u32]);
+impl<'origin, 'priority_list_ref, 'new> Splitable<'new> for UniversalStruct<'origin, 'priority_list_ref> {
+  type HalfOutput = (Vec<&'new mut [f64]>, &'new mut [u32]);
 
-  fn split_at_mut(&'n mut self, mid: usize) -> (Self::HalfOutput, Self::HalfOutput) {
+  fn split_at_mut(&'new mut self, mid: usize) -> (Self::HalfOutput, Self::HalfOutput) {
     let mut left_priority_list = vec![];
     let mut right_priority_list = vec![];
 
@@ -38,7 +38,7 @@ impl<'a, 'b, 'p, 'n> Splitable<'n> for UniversalStruct<'a, 'b, 'p> {
   }
 }
 
-impl<'a, 'b, 'p> IndexComparable for UniversalStruct<'a, 'b, 'p> {
+impl<'origin, 'priority_list_refp> IndexComparable for UniversalStruct<'origin, 'priority_list_refp> {
   fn compare(&self, i: usize, j: usize) -> bool {
     let mut level = 0;
     let Self {
@@ -77,7 +77,7 @@ impl<'a, 'b, 'p> IndexComparable for UniversalStruct<'a, 'b, 'p> {
   }
 }
 
-impl<'a, 'b, 'p> Swappable for UniversalStruct<'a, 'b, 'p> {
+impl<'origin, 'priority_list_ref> Swappable for UniversalStruct<'origin, 'priority_list_ref> {
   fn swap(&mut self, i: usize, j: usize) -> () {
     for key in self.priority_list.iter_mut() {
       key.swap(i, j)

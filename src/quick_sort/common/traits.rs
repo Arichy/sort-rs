@@ -2,10 +2,10 @@ pub(crate) trait Sizable {
   fn len(&self) -> usize;
 }
 
-pub(crate) trait Splitable<'n> {
+pub(crate) trait Splitable<'new> {
   type HalfOutput;
 
-  fn split_at_mut(&'n mut self, mid: usize) -> (Self::HalfOutput, Self::HalfOutput);
+  fn split_at_mut(&'new mut self, mid: usize) -> (Self::HalfOutput, Self::HalfOutput);
 }
 
 pub(crate) trait IndexComparable {

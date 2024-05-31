@@ -32,8 +32,8 @@ fn quick_sort_objects_common(
   }
 }
 
-fn _normal_quick_sort_objects_common<'a: 'p, 'b: 'p, 'p>(
-  mut universal_struct: UniversalStruct<'a, 'b, 'p>,
+fn _normal_quick_sort_objects_common<'origin: 'priority_list_ref, 'priority_list_ref>(
+  mut universal_struct: UniversalStruct<'origin, 'priority_list_ref>,
 ) {
   if universal_struct.len() <= 1 {
     return;
@@ -61,8 +61,8 @@ fn _normal_quick_sort_objects_common<'a: 'p, 'b: 'p, 'p>(
   _normal_quick_sort_objects_common(right_struct);
 }
 
-fn _rayon_quick_sort_objects_common<'a: 'p, 'b: 'p, 'p>(
-  mut universal_struct: UniversalStruct<'a, 'b, 'p>,
+fn _rayon_quick_sort_objects_common<'origin: 'priority_list_ref, 'priority_list_ref>(
+  mut universal_struct: UniversalStruct<'origin, 'priority_list_ref>,
 ) {
   if universal_struct.len() <= 1 {
     return;
@@ -92,30 +92,3 @@ fn _rayon_quick_sort_objects_common<'a: 'p, 'b: 'p, 'p>(
     || _normal_quick_sort_objects_common(right_struct),
   );
 }
-
-// fn _split_at_mut<'a, 'b, 'p, 'n>(
-//   structure: &'n mut UniversalStruct<'a, 'b, 'p>,
-//   mid: usize,
-// ) -> (
-//   (Vec<&'n mut [f64]>, &'n mut [u32]),
-//   (Vec<&'n mut [f64]>, &'n mut [u32]),
-// ) {
-//   let mut left_priority_list = vec![];
-//   let mut right_priority_list = vec![];
-
-//   for key in structure.priority_list.iter_mut() {
-//     let (left, right) = key.split_at_mut(mid);
-//     let right = &mut right[1..];
-
-//     left_priority_list.push(left);
-//     right_priority_list.push(right);
-//   }
-
-//   let (left_index_list, right_index_list) = structure.index_list.split_at_mut(mid);
-//   let right_index_list = &mut right_index_list[1..];
-
-//   (
-//     (left_priority_list, left_index_list),
-//     (right_priority_list, right_index_list),
-//   )
-// }
