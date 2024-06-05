@@ -55,5 +55,9 @@
   "packageManager": "yarn@4.2.2",
   "repository": {
     "url": "https://github.com/Arichy/sort-rs"
-  }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
 }
