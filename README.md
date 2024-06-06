@@ -11,13 +11,13 @@ Recommended to use when the array size is larger than `1_000` elements.
 # Installation
 
 ```bash
-pnpm add arichy/sort-rs-core
+pnpm add arichy/sort-rs
 ```
 
 or
 
 ```bash
-yarn add arichy/sort-rs-core
+yarn add arichy/sort-rs
 ```
 
 # Quick Start
@@ -25,7 +25,7 @@ yarn add arichy/sort-rs-core
 ### For numbers:
 
 ```typescript
-import { sortNumbers } from '@arichy/sort-rs-core';
+import { sortNumbers } from '@arichy/sort-rs';
 
 const isSorted = (arr: number[], asc: boolean) => {
   for (let i = 0; i < arr.length - 1; i++) {
@@ -99,7 +99,7 @@ true;
 ### For objects:
 
 ```typescript
-import { sortObjects } from '@arichy/sort-rs-core';
+import { sortObjects } from '@arichy/sort-rs';
 
 const isObjectsSorted = <T>(arr: T[], priorityList: Array<keyof T>, orderList: boolean[]) => {
   for (let i = 1; i < arr.length; i++) {
